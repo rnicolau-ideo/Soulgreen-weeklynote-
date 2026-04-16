@@ -22,7 +22,7 @@
   .header-art { width: 100%; position: relative; overflow: hidden; height: 280px; }
   .header-img { width: 100%; height: 280px; object-fit: cover; object-position: center; display: block; }
   .header-meta { position: absolute; top: 0; left: 0; right: 0; padding: 22px 36px; display: flex; align-items: baseline; justify-content: space-between; z-index: 2; }
-  .logo { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 22px; color: #1a1a18; }
+  .logo { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 22px; color: #ffffff; }
   .issue-tag { font-family: 'Geist Mono', monospace; font-size: 10px; color: #3a3a38; letter-spacing: 0.06em; }
 
   .welcome { padding: 48px 48px 36px; border-bottom: 1px solid #e8e6df; }
@@ -32,17 +32,10 @@
 
   .work { padding: 44px 48px 36px; border-bottom: 1px solid #e8e6df; }
   .work-title { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 24px; }
-  .work-body { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.8; color: #2c2c2a; margin-bottom: 24px; }
-  .work-body strong { font-weight: 500; color: #1a1a18; }
-  .deliverable-list { list-style: none; margin-top: 20px; }
-  .deliverable-list li { font-family: 'Geist Mono', monospace; font-size: 11px; color: #5f5e5a; padding: 10px 0; border-top: 0.5px solid #e8e6df; display: flex; align-items: center; gap: 12px; }
-  .deliverable-list li:last-child { border-bottom: 0.5px solid #e8e6df; }
-  .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; }
-
-  .photo-section { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: #e8e6df; }
-  .photo-block { aspect-ratio: 4/3; overflow: hidden; }
-  .photo-placeholder { background: #ece9e2; width: 100%; height: 100%; min-height: 160px; display: flex; align-items: center; justify-content: center; }
-  .photo-placeholder span { font-family: 'Geist Mono', monospace; font-size: 10px; color: #888780; letter-spacing: 0.08em; }
+  .work-list { list-style: none; }
+  .work-list li { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.8; color: #2c2c2a; padding: 10px 0; border-top: 0.5px solid #e8e6df; display: flex; align-items: flex-start; gap: 12px; }
+  .work-list li:last-child { border-bottom: 0.5px solid #e8e6df; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; margin-top: 10px; }
 
   .next { padding: 44px 48px 36px; border-bottom: 1px solid #e8e6df; background: #f9f8f4; }
   .next-inner { display: flex; gap: 32px; align-items: flex-start; }
@@ -53,9 +46,8 @@
   .goodbye-text { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 30px; line-height: 1.15; color: #f5f4f0; margin-bottom: 24px; letter-spacing: -0.3px; }
   .goodbye-sign { font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 400; color: #888780; line-height: 1.6; }
 
-  .footer { padding: 20px 48px; background: #1a1a18; display: flex; align-items: center; justify-content: space-between; }
-  .footer-logo { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 14px; color: #f5f4f0; }
-  .footer-tagline { font-family: 'Geist Mono', monospace; font-size: 10px; color: #888780; letter-spacing: 0.04em; }
+  .footer-peek { width: 100%; height: 80px; overflow: hidden; }
+  .footer-peek img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
 </style>
 </head>
 <body>
@@ -74,44 +66,27 @@
   <div class="welcome">
     <div class="section-label">This week</div>
     <div class="welcome-headline">And we're live.</div>
-    <p class="welcome-body">Welcome to the first Project Alchemist weekly note: a way to keep you close to the work. Here's where we are, what we've been building, and what's coming next. As always, feel free to reply with any questions.<br><br>We named it Project Alchemist because we wanted to capture two things at once: the scientific rigour behind Soulgreen's product, and the sense of magic we want to infuse into the experience. Alchemist felt like the right word for that combination. It seemed like a good place to start.</p>
+    <p class="welcome-body">Welcome to the first Project Alchemist weekly note, a way to keep you close to the work as it happens. Here's where we are, what we've been building, and what's coming next.<br><br>Why 'Project Alchemist'? Because supplementation is, at its core, about transformation. Every touchpoint, every interaction, every detail of the experience should feel like it's facilitating that change. Alchemist felt like a good shorthand to keep us true to that idea as we move forward.<br><br>Take a look at what we've been up to below and feel free to reply with any questions!</p>
   </div>
 
   <!-- WORK -->
   <div class="work">
     <div class="work-title">What we did</div>
-    <p class="work-body">
-      <strong>We kicked off.</strong><br>
-      We opened the project with a session with all of you: walking through the plan and targets, and exploring your hypotheses, hopes, and fears for the road ahead.
-    </p>
-    <p class="work-body">
-      <strong>We went to the source.</strong><br>
-      We sat down with the Soulgreen team to learn about the origins of the brand and the individual vision behind it.
-    </p>
-    <p class="work-body">
-      <strong>We did our homework.</strong><br>
-      We dug into the documents you shared and absorbed the work already done by Zelo, Interbrand, and BIP: building on the foundation that's already there.
-    </p>
-    <p class="work-body">
-      <strong>We got aligned.</strong><br>
-      We had an onboarding call with BIP to sync on deadlines and coordination.
-    </p>
-    <p class="work-body">
-      <strong>We prepared for Italy.</strong><br>
-      We handled all the logistics to kick off our research stage next week: recruiting participants and developing the discussion guides and stimuli we'll use during interviews.
-    </p>
-    <p class="work-body">
-      <strong>We looked sideways.</strong><br>
-      We started our analogous research: looking outside the immediate sector to bring fresh perspective into the work. The team is exploring apps like ZOE, Replika, and Tolen to understand what membership to an AI companion might feel like. We also visited a Biogena shop to experience their personalised skin scan and supplements offering, and attended a SoulCycle class to see how a specific experience can build community.
-    </p>
-
+    <ul class="work-list">
+      <li><span class="dot"></span><span>We opened the project with a session with all of you: walking through the plan and targets, and exploring your hypotheses, hopes, and fears for the road ahead. Thank you all for the energy you brought to that session!</span></li>
+      <li><span class="dot"></span><span>We sat down with the Soulgreen team to learn about the origins of the brand and the vision behind it.</span></li>
+      <li><span class="dot"></span><span>We dug into the documents you shared and absorbed the work already done by Zelo, Interbrand, and BIP.</span></li>
+      <li><span class="dot"></span><span>We had an onboarding call with BIP to sync on coordination and next steps.</span></li>
+      <li><span class="dot"></span><span>We handled all the logistics to kick off our research stage next week: recruiting participants and developing the discussion guides and stimuli we'll use during interviews.</span></li>
+      <li><span class="dot"></span><span>We started our analogous research, which means looking outside the immediate sector to bring fresh perspective into the work. The team is exploring apps like ZOE, Replika, and Tolen to learn from memberships that include an AI companion. We also visited a Biogena shop to experience their personalised skin scan, dropped into The Ordinary to explore their simplified, science-led approach to skincare, and attended a SoulCycle class to see how a well-designed experience can build a global community.</span></li>
+    </ul>
   </div>
 
   <!-- NEXT -->
   <div class="next">
     <div class="next-inner">
       <div class="next-label">NEXT WEEK</div>
-      <p class="next-text">Next week we go where the real insights live: meeting participants in their homes across Milan and the surrounding area, conducting interviews, continuing our analogous research, and meeting you face to face.</p>
+      <p class="next-text">Next week we head into the field: meeting participants in their homes across Milan and the surrounding area, conducting interviews, continuing our analogous research, and seeing you in person. We can't wait.</p>
     </div>
   </div>
 
@@ -121,7 +96,10 @@
     <div class="goodbye-sign">IDEO team</div>
   </div>
 
-
+  <!-- FOOTER PEEK -->
+  <div class="footer-peek">
+    <img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/ChatGPT%20Image%20Apr%2015%2C%202026%2C%2001_25_28%20PM.png" alt=""/>
+  </div>
 
 </div>
 </body>
