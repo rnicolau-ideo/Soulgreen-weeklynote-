@@ -37,8 +37,12 @@
   .work-list li:last-child { border-bottom: none; }
   .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; margin-top: 10px; }
 
+  .photo-stack { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .photo-stack .photo-block { width: 100%; height: 200px; overflow: hidden; background: #ece9e2; }
+  .photo-stack .photo-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
   .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
-  .photo-block { aspect-ratio: 4/3; overflow: hidden; background: #ece9e2; display: flex; align-items: center; justify-content: center; }
+  .photo-block { overflow: hidden; background: #ece9e2; display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; }
   .photo-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .next { padding: 44px 48px 36px; border-top: 1px solid #e8e6df; border-bottom: 1px solid #e8e6df; background: #f9f8f4; }
@@ -80,8 +84,8 @@
       <li><span class="dot"></span><span>We explored analogous inspiration beyond the supplement market to expand our perspective and gather fresh ideas. This took us to the gut health app ZOE, AI companions like Tolen and Replika, competitors like Biogena, and innovative concepts like The Ordinary, SoulCycle, Nespresso, and the Starbucks flagship store in Milan. We also took advantage of Design Week and popped into the IKEA exhibition centred around social habits and food. We'll share our learnings in more detail next week.</span></li>
     </ul>
 
-    <!-- ANALOGOUS PHOTO GRID -->
-    <div class="photo-grid">
+    <!-- ANALOGOUS PHOTO STACK -->
+    <div class="photo-stack">
       <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/Frame%201.png" alt="Analogous research 01"/></div>
       <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/Frame%202.png" alt="Analogous research 02"/></div>
     </div>
