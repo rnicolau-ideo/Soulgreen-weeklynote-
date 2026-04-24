@@ -37,6 +37,11 @@
   .work-list li:last-child { border-bottom: 0.5px solid #e8e6df; }
   .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; margin-top: 10px; }
 
+  .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .photo-block { aspect-ratio: 4/3; overflow: hidden; background: #ece9e2; display: flex; align-items: center; justify-content: center; }
+  .photo-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-block span { font-family: 'Geist Mono', monospace; font-size: 10px; color: #888780; letter-spacing: 0.08em; }
+
   .next { padding: 44px 48px 36px; border-bottom: 1px solid #e8e6df; background: #f9f8f4; }
   .next-inner { display: flex; gap: 32px; align-items: flex-start; }
   .next-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #888780; white-space: nowrap; padding-top: 2px; min-width: 80px; }
@@ -75,6 +80,17 @@
     <ul class="work-list">
       <li><span class="dot"></span><span>We explored analogous inspiration beyond the supplement market to expand our perspective and gather fresh ideas. This took us to the gut health app ZOE, AI companions like Tolen and Replika, competitors like Biogena, and innovative concepts like The Ordinary, SoulCycle, Nespresso, and the Starbucks flagship store in Milan. We also took advantage of Design Week and popped into the IKEA exhibition centred around social habits and food. We'll share our learnings in more detail next week.</span></li>
       <li><span class="dot"></span><span>We interviewed six participants in their homes across Milan, learning about their habits around health, AI, and supplements. These were rich, honest conversations that gave us a much clearer picture of your potential consumer: their habits, challenges, and preferences.</span></li>
+    </ul>
+
+    <!-- PHOTO GRID -->
+    <div class="photo-grid">
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_5009%202.png" alt="Field research 01"/></div>
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_0908%202.png" alt="Field research 02"/></div>
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_0863%202.png" alt="Field research 03"/></div>
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_0830%202.png" alt="Field research 04"/></div>
+    </div>
+
+    <ul class="work-list">
       <li><span class="dot"></span><span>We gathered video input from five additional participants. While less in-depth than the home interviews, they added a valuable layer of insight to what we're building.</span></li>
       <li><span class="dot"></span><span>To complement our research, we spoke to two experts: a personal trainer who specialises in neurodivergent clients, and a sociologist who specialises in the relationship between humans and AI.</span></li>
       <li><span class="dot"></span><span>We have now downloaded everything we've collected and are laser focused on preparing for our storytelling session, where we'll walk through the most interesting threads from the research and make sure the whole team has a comprehensive view of everything gathered before we move into synthesis. It's going to be an energising session and we're so glad you'll be joining us.</span></li>
