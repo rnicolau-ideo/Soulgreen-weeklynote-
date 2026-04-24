@@ -118,4 +118,124 @@
 
 </div>
 </body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&display=swap');
+
+  @font-face {
+    font-family: 'Untimes';
+    src: url('Untimes-BoldItalic.woff2') format('woff2'),
+         url('Untimes-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f4f0; font-family: 'Geist', sans-serif; color: #1a1a18; }
+  .email-wrap { max-width: 620px; margin: 0 auto; background: #ffffff; }
+
+  .header-art { width: 100%; position: relative; overflow: hidden; height: 280px; }
+  .header-img { width: 100%; height: 280px; object-fit: cover; object-position: center; display: block; }
+  .header-meta { position: absolute; top: 0; left: 0; right: 0; padding: 22px 36px; display: flex; align-items: baseline; justify-content: space-between; z-index: 2; }
+  .logo { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 22px; color: #1a1a18; }
+  .issue-tag { font-family: 'Geist Mono', monospace; font-size: 10px; color: #3a3a38; letter-spacing: 0.06em; }
+
+  .welcome { padding: 48px 48px 36px; border-bottom: 1px solid #e8e6df; }
+  .section-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 18px; }
+  .welcome-headline { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 36px; line-height: 1.1; letter-spacing: -0.5px; color: #1a1a18; margin-bottom: 18px; }
+  .welcome-body { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.75; color: #444441; max-width: 460px; }
+
+  .work { padding: 44px 48px 36px; border-bottom: 1px solid #e8e6df; }
+  .work-title { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 24px; }
+  .work-list { list-style: none; }
+  .work-list li { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.8; color: #2c2c2a; padding: 10px 0; border-top: 0.5px solid #e8e6df; display: flex; align-items: flex-start; gap: 12px; }
+  .work-list li:last-child { border-bottom: 0.5px solid #e8e6df; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; margin-top: 10px; }
+
+  .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .photo-block { aspect-ratio: 4/3; overflow: hidden; background: #ece9e2; display: flex; align-items: center; justify-content: center; }
+  .photo-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-block span { font-family: 'Geist Mono', monospace; font-size: 10px; color: #888780; letter-spacing: 0.08em; }
+
+  .next { padding: 44px 48px 36px; border-bottom: 1px solid #e8e6df; background: #f9f8f4; }
+  .next-inner { display: flex; gap: 32px; align-items: flex-start; }
+  .next-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #888780; white-space: nowrap; padding-top: 2px; min-width: 80px; }
+  .next-text { font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.7; color: #444441; }
+
+  .goodbye { padding: 52px 48px 44px; background: #1a1a18; }
+  .goodbye-text { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 30px; line-height: 1.15; color: #f5f4f0; margin-bottom: 24px; letter-spacing: -0.3px; }
+  .goodbye-sign { font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 400; color: #888780; line-height: 1.6; }
+
+  .footer-peek { width: 100%; height: 80px; overflow: hidden; }
+  .footer-peek img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+</style>
+</head>
+<body>
+<div class="email-wrap">
+
+  <!-- HEADER -->
+  <div class="header-art">
+    <img class="header-img" src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/ChatGPT%20Image%20Apr%2015%2C%202026%2C%2002_42_09%20PM%202.png" alt="Soulgreen texture"/>
+    <div class="header-meta">
+      <div class="logo">Project Alchemist</div>
+      <div class="issue-tag">APRIL 2026</div>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <div class="welcome">
+    <div class="section-label">Week 02</div>
+    <div class="welcome-headline">Fresh from the field.</div>
+    <p class="welcome-body">Welcome to the second Project Alchemist weekly note, your regular window into the work as it happens. Week two is done and what a week it was.<br><br>Take a look at what we got up to below, and don't hesitate to reach out if you have any questions.</p>
+  </div>
+
+  <!-- WORK -->
+  <div class="work">
+    <div class="work-title">What we did</div>
+    <ul class="work-list">
+      <li><span class="dot"></span><span>We explored analogous inspiration beyond the supplement market to expand our perspective and gather fresh ideas. This took us to the gut health app ZOE, AI companions like Tolen and Replika, competitors like Biogena, and innovative concepts like The Ordinary, SoulCycle, Nespresso, and the Starbucks flagship store in Milan. We also took advantage of Design Week and popped into the IKEA exhibition centred around social habits and food. We'll share our learnings in more detail next week.</span></li>
+      <li><span class="dot"></span><span>We interviewed six participants in their homes across Milan, learning about their habits around health, AI, and supplements. These were rich, honest conversations that gave us a much clearer picture of your potential consumer: their habits, challenges, and preferences.</span></li>
+    </ul>
+
+    <!-- PHOTO GRID -->
+    <div class="photo-grid">
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_5009%202.png" alt="Field research 01"/></div>
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_0908%202.png" alt="Field research 02"/></div>
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_0863%202.png" alt="Field research 03"/></div>
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_0830%202.png" alt="Field research 04"/></div>
+    </div>
+
+    <ul class="work-list">
+      <li><span class="dot"></span><span>We gathered video input from five additional participants. While less in-depth than the home interviews, they added a valuable layer of insight to what we're building.</span></li>
+      <li><span class="dot"></span><span>To complement our research, we spoke to two experts: a personal trainer who specialises in neurodivergent clients, and a sociologist who specialises in the relationship between humans and AI.</span></li>
+      <li><span class="dot"></span><span>We have now downloaded everything we've collected and are laser focused on preparing for our storytelling session, where we'll walk through the most interesting threads from the research and make sure the whole team has a comprehensive view of everything gathered before we move into synthesis. It's going to be an energising session and we're so glad you'll be joining us.</span></li>
+    </ul>
+  </div>
+
+  <!-- NEXT -->
+  <div class="next">
+    <div class="next-inner">
+      <div class="next-label">NEXT WEEK</div>
+      <p class="next-text">Next week we move into synthesis: taking everything we've collected and clustering it into insights, ready to share with you on Thursday.</p>
+    </div>
+  </div>
+
+  <!-- GOODBYE -->
+  <div class="goodbye">
+    <div class="goodbye-text">See you next week!</div>
+    <div class="goodbye-sign">IDEO team</div>
+  </div>
+
+  <!-- FOOTER PEEK -->
+  <div class="footer-peek">
+    <img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/ChatGPT%20Image%20Apr%2015%2C%202026%2C%2002_42_09%20PM%202.png" alt=""/>
+  </div>
+
+</div>
+</body>
 </html>
