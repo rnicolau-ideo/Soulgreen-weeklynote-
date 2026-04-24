@@ -30,19 +30,18 @@
   .welcome-headline { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 36px; line-height: 1.1; letter-spacing: -0.5px; color: #1a1a18; margin-bottom: 18px; }
   .welcome-body { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.75; color: #444441; max-width: 460px; }
 
-  .work { padding: 44px 48px 36px; border-bottom: 1px solid #e8e6df; }
+  .work { padding: 44px 48px 36px; }
   .work-title { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 24px; }
   .work-list { list-style: none; }
   .work-list li { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.8; color: #2c2c2a; padding: 10px 0; border-top: 0.5px solid #e8e6df; display: flex; align-items: flex-start; gap: 12px; }
-  .work-list li:last-child { border-bottom: 0.5px solid #e8e6df; }
+  .work-list li:last-child { border-bottom: none; }
   .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; margin-top: 10px; }
 
   .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
   .photo-block { aspect-ratio: 4/3; overflow: hidden; background: #ece9e2; display: flex; align-items: center; justify-content: center; }
   .photo-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .photo-block span { font-family: 'Geist Mono', monospace; font-size: 10px; color: #888780; letter-spacing: 0.08em; }
 
-  .next { padding: 44px 48px 36px; border-bottom: 1px solid #e8e6df; background: #f9f8f4; }
+  .next { padding: 44px 48px 36px; border-top: 1px solid #e8e6df; border-bottom: 1px solid #e8e6df; background: #f9f8f4; }
   .next-inner { display: flex; gap: 32px; align-items: flex-start; }
   .next-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #888780; white-space: nowrap; padding-top: 2px; min-width: 80px; }
   .next-text { font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.7; color: #444441; }
@@ -79,10 +78,19 @@
     <div class="work-title">What we did</div>
     <ul class="work-list">
       <li><span class="dot"></span><span>We explored analogous inspiration beyond the supplement market to expand our perspective and gather fresh ideas. This took us to the gut health app ZOE, AI companions like Tolen and Replika, competitors like Biogena, and innovative concepts like The Ordinary, SoulCycle, Nespresso, and the Starbucks flagship store in Milan. We also took advantage of Design Week and popped into the IKEA exhibition centred around social habits and food. We'll share our learnings in more detail next week.</span></li>
+    </ul>
+
+    <!-- ANALOGOUS PHOTO GRID -->
+    <div class="photo-grid">
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/Frame%201.png" alt="Analogous research 01"/></div>
+      <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/Frame%202.png" alt="Analogous research 02"/></div>
+    </div>
+
+    <ul class="work-list">
       <li><span class="dot"></span><span>We interviewed six participants in their homes across Milan, learning about their habits around health, AI, and supplements. These were rich, honest conversations that gave us a much clearer picture of your potential consumer: their habits, challenges, and preferences.</span></li>
     </ul>
 
-    <!-- PHOTO GRID -->
+    <!-- INTERVIEWS PHOTO GRID -->
     <div class="photo-grid">
       <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_5009%202.png" alt="Field research 01"/></div>
       <div class="photo-block"><img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/IMG_0908%202.png" alt="Field research 02"/></div>
