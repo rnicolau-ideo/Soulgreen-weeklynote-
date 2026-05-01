@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&display=swap');
+
+  @font-face {
+    font-family: 'Untimes';
+    src: url('Untimes-BoldItalic.woff2') format('woff2'),
+         url('Untimes-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f4f0; font-family: 'Geist', sans-serif; color: #1a1a18; }
+  .email-wrap { max-width: 620px; margin: 0 auto; background: #ffffff; }
+
+  .header-art { width: 100%; position: relative; overflow: hidden; height: 280px; }
+  .header-img { width: 100%; height: 280px; object-fit: cover; object-position: center; display: block; }
+  .header-meta { position: absolute; top: 0; left: 0; right: 0; padding: 22px 36px; display: flex; align-items: baseline; justify-content: space-between; z-index: 2; }
+  .logo { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 22px; color: #1a1a18; }
+  .issue-tag { font-family: 'Geist Mono', monospace; font-size: 10px; color: #3a3a38; letter-spacing: 0.06em; }
+
+  .welcome { padding: 48px 48px 36px; border-bottom: 1px solid #e8e6df; }
+  .section-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 18px; }
+  .welcome-headline { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 36px; line-height: 1.1; letter-spacing: -0.5px; color: #1a1a18; margin-bottom: 18px; }
+  .welcome-body { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.75; color: #444441; max-width: 460px; }
+
+  .work { padding: 44px 48px 36px; }
+  .work-title { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 24px; }
+  .work-list { list-style: none; }
+  .work-list li { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.8; color: #2c2c2a; padding: 10px 0; border-top: 0.5px solid #e8e6df; display: flex; align-items: flex-start; gap: 12px; }
+  .work-list li:last-child { border-bottom: none; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; margin-top: 10px; }
+
+  .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .photo-block { overflow: hidden; background: #ece9e2; display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; }
+  .photo-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-block span { font-family: 'Geist Mono', monospace; font-size: 10px; color: #888780; letter-spacing: 0.08em; }
+
+  .next { padding: 44px 48px 36px; border-top: 1px solid #e8e6df; border-bottom: 1px solid #e8e6df; background: #f9f8f4; }
+  .next-inner { display: flex; gap: 32px; align-items: flex-start; }
+  .next-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #888780; white-space: nowrap; padding-top: 2px; min-width: 80px; }
+  .next-text { font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.7; color: #444441; }
+
+  .goodbye { padding: 52px 48px 44px; background: #1a1a18; }
+  .goodbye-text { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 30px; line-height: 1.15; color: #f5f4f0; margin-bottom: 24px; letter-spacing: -0.3px; }
+  .goodbye-sign { font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 400; color: #888780; line-height: 1.6; }
+
+  .footer-peek { width: 100%; height: 80px; overflow: hidden; }
+  .footer-peek img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+</style>
+</head>
+<body>
+<div class="email-wrap">
+
+  <!-- HEADER -->
+  <div class="header-art">
+    <img class="header-img" src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/ChatGPT%20Image%20Apr%2015%2C%202026%2C%2002_40_10%20PM%201.png" alt="Soulgreen texture"/>
+    <div class="header-meta">
+      <div class="logo">Project Alchemist</div>
+      <div class="issue-tag">MAY 2026</div>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <div class="welcome">
+    <div class="section-label">Week 03</div>
+    <div class="welcome-headline">Into the insights.</div>
+    <p class="welcome-body">As we close out week three, this has been one of those weeks where everything starts to click. We moved from raw research into crystallised insights, giving us the foundation we need to start designing.<br><br>As always, have a read below and feel free to reach out with any questions.</p>
+  </div>
+
+  <!-- WORK -->
+  <div class="work">
+    <div class="work-title">What we did</div>
+    <ul class="work-list">
+      <li><span class="dot"></span><span>The team worked through a rigorous synthesis of all the field research from Milan, pulling threads across interviews and observations to distil core insights about how people really relate to supplements, trust, and AI in their daily lives. Each insight comes paired with a "what does this mean for Soulgreen?" question to start opening up possibilities.</span></li>
+      <li><span class="dot"></span><span>Earlier in the week we ran a multi-part storytelling session with the Soulgreen team. Over several hours, we walked through interview highlights in a structured playback format, bringing customer voices to life. We also shared our analogous inspiration and expert interview findings, giving the team direct access to perspectives from specialists in nutrition, behaviour change, and digital health. Thank you to everyone who participated — your energy and input made our day.</span></li>
+      <li><span class="dot"></span><span>On Thursday, we presented our research insights to the full Soulgreen team in a structured two-hour session, covering research grounding and a deep insight walkthrough.</span></li>
+      <li><span class="dot"></span><span>With everyone aligned on the outcomes of our research, we moved into a collaborative making session to begin shaping early vision directions. We built a custom interactive tool to support real-time collaboration and get everyone contributing their ideas and preliminary vision statements. This is where research moves into design.<br><br>We used those vision statements to create landing pages for Soulgreen. These are quick visualisations of each vision statement that help us start designing sacrificial concepts for testing. Here are some examples:</span></li>
+    </ul>
+
+    <!-- EXAMPLES PHOTO GRID -->
+    <div class="photo-grid">
+      <div class="photo-block"><span>EXAMPLE 01</span></div>
+      <div class="photo-block"><span>EXAMPLE 02</span></div>
+      <div class="photo-block"><span>EXAMPLE 03</span></div>
+      <div class="photo-block"><span>EXAMPLE 04</span></div>
+    </div>
+
+    <ul class="work-list">
+      <li><span class="dot"></span><span>In parallel, we drafted and circulated a screener for the next wave of research participants.</span></li>
+    </ul>
+  </div>
+
+  <!-- NEXT -->
+  <div class="next">
+    <div class="next-inner">
+      <div class="next-label">NEXT WEEK</div>
+      <p class="next-text">We will take everything that emerged from our collaborative session and begin shaping it into defined vision directions that we can put in front of research participants to learn what resonates.</p>
+    </div>
+  </div>
+
+  <!-- GOODBYE -->
+  <div class="goodbye">
+    <div class="goodbye-text">See you next week!</div>
+    <div class="goodbye-sign">IDEO team</div>
+  </div>
+
+  <!-- FOOTER PEEK -->
+  <div class="footer-peek">
+    <img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/ChatGPT%20Image%20Apr%2015%2C%202026%2C%2002_40_10%20PM%201.png" alt=""/>
+  </div>
+
+</div>
+</body>
+</html>
