@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&display=swap');
+
+  @font-face {
+    font-family: 'Untimes';
+    src: url('Untimes-BoldItalic.woff2') format('woff2'),
+         url('Untimes-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f4f0; font-family: 'Geist', sans-serif; color: #1a1a18; }
+  .email-wrap { max-width: 620px; margin: 0 auto; background: #ffffff; }
+
+  .header-art { width: 100%; position: relative; overflow: hidden; height: 280px; }
+  .header-img { width: 100%; height: 280px; object-fit: cover; object-position: center; display: block; }
+  .header-meta { position: absolute; top: 0; left: 0; right: 0; padding: 22px 36px; display: flex; align-items: baseline; justify-content: space-between; z-index: 2; }
+  .logo { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 22px; color: #1a1a18; }
+  .issue-tag { font-family: 'Geist Mono', monospace; font-size: 10px; color: #ffffff; letter-spacing: 0.06em; }
+
+  .welcome { padding: 48px 48px 36px; border-bottom: 1px solid #e8e6df; }
+  .section-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 18px; }
+  .welcome-headline { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 36px; line-height: 1.1; letter-spacing: -0.5px; color: #1a1a18; margin-bottom: 18px; }
+  .welcome-body { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.75; color: #444441; max-width: 460px; }
+
+  .work { padding: 44px 48px 36px; }
+  .work-title { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 24px; }
+  .work-list { list-style: none; }
+  .work-list li { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.8; color: #2c2c2a; padding: 10px 0; border-top: 0.5px solid #e8e6df; display: flex; align-items: flex-start; gap: 12px; }
+  .work-list li:last-child { border-bottom: none; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; margin-top: 10px; }
+
+  .next { padding: 44px 48px 36px; border-top: 1px solid #e8e6df; border-bottom: 1px solid #e8e6df; background: #f9f8f4; }
+  .next-inner { display: flex; gap: 32px; align-items: flex-start; }
+  .next-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #888780; white-space: nowrap; padding-top: 2px; min-width: 80px; }
+  .next-list { list-style: none; }
+  .next-list li { font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.7; color: #444441; padding: 4px 0; display: flex; align-items: flex-start; gap: 10px; }
+  .next-dot { width: 3px; height: 3px; border-radius: 50%; background: #888780; flex-shrink: 0; margin-top: 10px; }
+
+  .goodbye { padding: 52px 48px 44px; background: #1a1a18; }
+  .goodbye-text { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 30px; line-height: 1.15; color: #f5f4f0; margin-bottom: 24px; letter-spacing: -0.3px; }
+  .goodbye-sign { font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 400; color: #888780; line-height: 1.6; }
+
+  .footer-peek { width: 100%; height: 80px; overflow: hidden; }
+  .footer-peek img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+</style>
+</head>
+<body>
+<div class="email-wrap">
+
+  <!-- HEADER -->
+  <div class="header-art">
+    <img class="header-img" src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/ChatGPT%20Image%20Apr%2015%2C%202026%2C%2002_39_10%20PM%201.png" alt="texture"/>
+    <div class="header-meta">
+      <div class="logo">Project Alchemist</div>
+      <div class="issue-tag">MAY 2026</div>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <div class="welcome">
+    <div class="section-label">Week 05</div>
+    <div class="welcome-headline">From many voices, one direction.</div>
+    <p class="welcome-body">Welcome to the fifth Project Alchemist weekly note, your window into the work as it unfolds. This week was a full one: we went deep into the field, then surfaced with a clear point of view on where we're going. Here's what we got up to, and what's coming next.</p>
+  </div>
+
+  <!-- WORK -->
+  <div class="work">
+    <div class="work-title">What we did</div>
+    <ul class="work-list">
+      <li><span class="dot"></span><span>We completed six user interviews testing early experience visions and associated product concepts, with Nekua team members joining us as observers throughout.</span></li>
+      <li><span class="dot"></span><span>We ran a thorough download and synthesis of the interview learnings, then hosted a session with the Nekua team to walk through what users responded to across the different directions and concepts.</span></li>
+      <li><span class="dot"></span><span>Drawing on what tested best in research, we evolved the explored visions into a single, unified experience direction. From this, we developed a set of core design principles to guide what comes next.</span></li>
+      <li><span class="dot"></span><span>We began bringing the evolved vision to life through new concepts and early ecosystem thinking, exploring how the experience could extend across touchpoints.</span></li>
+      <li><span class="dot"></span><span>We prepared for next week's Learnings Share and Making Session with the Nekua team, a hybrid in-person and remote session designed to turn insight into action.</span></li>
+    </ul>
+  </div>
+
+  <!-- NEXT -->
+  <div class="next">
+    <div class="next-inner">
+      <div class="next-label">NEXT WEEK</div>
+      <ul class="next-list">
+        <li><span class="next-dot"></span><span>We will host the Nekua team (in person + remote) for a Learnings Share and Making Session on Monday 18 May.</span></li>
+        <li><span class="next-dot"></span><span>We will complete our synthesis and formulate experience directions to be prioritised in a workshop.</span></li>
+        <li><span class="next-dot"></span><span>We will begin mapping the surfaces Nekua will own, identifying 4 to 5 key signature moments where the experience most needs to differentiate.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- GOODBYE -->
+  <div class="goodbye">
+    <div class="goodbye-text">See you next week!</div>
+    <div class="goodbye-sign">IDEO team</div>
+  </div>
+
+  <!-- FOOTER PEEK -->
+  <div class="footer-peek">
+    <img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/ChatGPT%20Image%20Apr%2015%2C%202026%2C%2002_39_10%20PM%201.png" alt=""/>
+  </div>
+
+</div>
+</body>
+</html>
