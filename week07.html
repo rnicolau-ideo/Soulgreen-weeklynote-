@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&display=swap');
+
+  @font-face {
+    font-family: 'Untimes';
+    src: url('Untimes-BoldItalic.woff2') format('woff2'),
+         url('Untimes-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f4f0; font-family: 'Geist', sans-serif; color: #1a1a18; }
+  .email-wrap { max-width: 620px; margin: 0 auto; background: #ffffff; }
+
+  .header-art { width: 100%; position: relative; overflow: hidden; height: 280px; }
+  .header-img { width: 100%; height: 280px; object-fit: cover; object-position: center; display: block; }
+  .header-meta { position: absolute; top: 0; left: 0; right: 0; padding: 22px 36px; display: flex; align-items: baseline; justify-content: space-between; z-index: 2; }
+  .logo { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 22px; color: #1a1a18; }
+  .issue-tag { font-family: 'Geist Mono', monospace; font-size: 10px; color: #ffffff; letter-spacing: 0.06em; }
+
+  .welcome { padding: 48px 48px 36px; border-bottom: 1px solid #e8e6df; }
+  .section-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 18px; }
+  .welcome-headline { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 36px; line-height: 1.1; letter-spacing: -0.5px; color: #1a1a18; margin-bottom: 18px; }
+  .welcome-body { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.75; color: #444441; max-width: 460px; }
+
+  .work { padding: 44px 48px 36px; }
+  .work-title { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 24px; }
+  .work-list { list-style: none; }
+  .work-list li { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.8; color: #2c2c2a; padding: 10px 0; border-top: 0.5px solid #e8e6df; display: flex; align-items: flex-start; gap: 12px; }
+  .work-list li:last-child { border-bottom: none; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; margin-top: 10px; }
+
+  .photo-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
+  .photo-block { aspect-ratio: 4/3; overflow: hidden; background: #ece9e2; display: flex; align-items: center; justify-content: center; }
+  .photo-block img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-block span { font-family: 'Geist Mono', monospace; font-size: 10px; color: #888780; letter-spacing: 0.08em; }
+
+  .next { padding: 44px 48px 36px; border-top: 1px solid #e8e6df; border-bottom: 1px solid #e8e6df; background: #f9f8f4; }
+  .next-inner { display: flex; gap: 32px; align-items: flex-start; }
+  .next-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #888780; white-space: nowrap; padding-top: 2px; min-width: 80px; }
+  .next-text { font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.7; color: #444441; }
+
+  .goodbye { padding: 52px 48px 44px; background: #1a1a18; }
+  .goodbye-text { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 30px; line-height: 1.15; color: #f5f4f0; margin-bottom: 24px; letter-spacing: -0.3px; }
+  .goodbye-sign { font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 400; color: #888780; line-height: 1.6; }
+
+  .footer-peek { width: 100%; height: 80px; overflow: hidden; }
+  .footer-peek img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+</style>
+</head>
+<body>
+<div class="email-wrap">
+
+  <!-- HEADER -->
+  <div class="header-art">
+    <img class="header-img" src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/Frame%2020%403x%201.jpg" alt="texture"/>
+    <div class="header-meta">
+      <div class="logo">Project Alchemist</div>
+      <div class="issue-tag">MAY 2026</div>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <div class="welcome">
+    <div class="section-label">Week 07</div>
+    <div class="welcome-headline">One chapter closes, another opens.</div>
+    <p class="welcome-body">Together, we have built something to be proud of. This week we closed out the Vision workstream with a strong shared foundation, and we are excited to move into the next phase where the real detail begins.<br><br>Here's what we got up to, and what's coming next.</p>
+  </div>
+
+  <!-- WORK -->
+  <div class="work">
+    <div class="work-title">What we did</div>
+    <ul class="work-list">
+      <li><span class="dot"></span><span>We worked on onboarding materials to bring the new team members joining next week fully up to speed, ensuring everyone hits the ground running from day one.</span></li>
+      <li><span class="dot"></span><span>We began preparing for the third round of testing, which will feed directly into the Digital Experience workstream.</span></li>
+      <li><span class="dot"></span><span>We selected and designed the Signature Moments, defining the key experiences that will shape how people feel at every meaningful touchpoint of the Nekua journey.</span></li>
+      <li><span class="dot"></span><span>We developed early prototypes for each Signature Moment, giving us tangible, testable expressions of the vision to carry into the next phase.</span></li>
+      <li><span class="dot"></span><span>We prepared for and delivered the Final Vision Workstream presentation, including design principles and the early prototypes for the signature moments. We then ran a "What Would Have to Be True" session to surface the key questions and details we need to address across each Signature Moment in the weeks ahead. This was a crucial step for us to capture development needs for each signature moment going forward.</span></li>
+    </ul>
+
+    <!-- 6 PHOTO PLACEHOLDERS: 2 rows of 3 -->
+    <div class="photo-grid-3">
+      <div class="photo-block"><span>PHOTO 01</span></div>
+      <div class="photo-block"><span>PHOTO 02</span></div>
+      <div class="photo-block"><span>PHOTO 03</span></div>
+    </div>
+    <div class="photo-grid-3" style="margin-bottom: 20px;">
+      <div class="photo-block"><span>PHOTO 04</span></div>
+      <div class="photo-block"><span>PHOTO 05</span></div>
+      <div class="photo-block"><span>PHOTO 06</span></div>
+    </div>
+
+    <ul class="work-list">
+      <li><span class="dot"></span><span>We held a catch-up with BIP to bring them up to speed on the work developed so far, setting the stage for alignment and collaboration in the weeks ahead.</span></li>
+    </ul>
+  </div>
+
+  <!-- NEXT -->
+  <div class="next">
+    <div class="next-inner">
+      <div class="next-label">NEXT WEEK</div>
+      <p class="next-text">We will brief the new teams and formally kick off three workstreams: Omnichannel Experience, Digital Experience, and AI Companion.</p>
+    </div>
+  </div>
+
+  <!-- GOODBYE -->
+  <div class="goodbye">
+    <div class="goodbye-text">See you next week!</div>
+    <div class="goodbye-sign">IDEO team</div>
+  </div>
+
+  <!-- FOOTER PEEK -->
+  <div class="footer-peek">
+    <img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/Frame%2020%403x%201.jpg" alt=""/>
+  </div>
+
+</div>
+</body>
+</html>
