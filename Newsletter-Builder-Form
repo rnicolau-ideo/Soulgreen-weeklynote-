@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Alchemist — Workstream Updates</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&display=swap');
+  @font-face { font-family: 'Untimes'; src: url('Untimes-BoldItalic.woff2') format('woff2'), url('Untimes-BoldItalic.woff') format('woff'); font-weight: bold; font-style: italic; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f4f0; font-family: 'Geist', sans-serif; color: #1a1a18; min-height: 100vh; padding: 48px 24px; }
+  .wrap { max-width: 680px; margin: 0 auto; background: #fff; border-radius: 4px; padding: 48px; }
+  .page-title { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 30px; color: #1a1a18; margin-bottom: 6px; }
+  .page-sub { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888780; margin-bottom: 32px; }
+  .tabs { display: flex; border-bottom: 0.5px solid #e8e6df; margin-bottom: 32px; gap: 0; }
+  .tab { font-size: 13px; padding: 10px 18px; border: none; background: none; cursor: pointer; color: #888780; border-bottom: 2px solid transparent; margin-bottom: -1px; font-family: 'Geist', sans-serif; }
+  .tab.active { color: #1a1a18; border-bottom-color: #1a1a18; font-weight: 500; }
+  .tab:hover { color: #1a1a18; }
+  .badge { font-size: 11px; padding: 2px 7px; border-radius: 20px; background: #ece9e2; color: #888780; margin-left: 5px; }
+  .badge.ok { background: #d4edda; color: #2d6a4f; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .stream-title { font-size: 16px; font-weight: 500; color: #1a1a18; margin-bottom: 6px; }
+  .stream-desc { font-size: 13px; color: #888780; margin-bottom: 20px; line-height: 1.5; }
+  .field { margin-bottom: 18px; }
+  label { display: block; font-size: 13px; color: #888780; margin-bottom: 6px; }
+  input[type="text"], textarea { width: 100%; font-family: 'Geist', sans-serif; font-size: 14px; color: #1a1a18; background: #fff; border: 0.5px solid #d3d1c7; border-radius: 4px; padding: 10px 12px; outline: none; transition: border-color 0.15s; }
+  input[type="text"]:focus, textarea:focus { border-color: #888780; }
+  textarea { resize: vertical; line-height: 1.7; }
+  .hint { font-size: 12px; color: #b4b2a9; margin-top: 5px; }
+  .divider { border: none; border-top: 0.5px solid #e8e6df; margin: 24px 0; }
+  .btn { background: #1a1a18; color: #f5f4f0; border: none; border-radius: 4px; padding: 10px 22px; font-family: 'Geist', sans-serif; font-size: 14px; cursor: pointer; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-outline { background: #fff; color: #1a1a18; border: 0.5px solid #d3d1c7; border-radius: 4px; padding: 8px 16px; font-family: 'Geist', sans-serif; font-size: 13px; cursor: pointer; }
+  .btn-outline:hover { background: #f5f4f0; }
+  .btn-danger { background: #fff; color: #c0392b; border: 0.5px solid #e8c4c0; border-radius: 4px; padding: 8px 16px; font-family: 'Geist', sans-serif; font-size: 13px; cursor: pointer; }
+  .msg { font-size: 12px; margin-top: 10px; display: none; padding: 8px 12px; border-radius: 4px; }
+  .msg.ok { background: #d4edda; color: #2d6a4f; display: block; }
+  .msg.err { background: #f8d7da; color: #c0392b; display: block; }
+  .collect-box { background: #f9f8f4; border: 0.5px solid #e8e6df; border-radius: 4px; padding: 20px; margin-bottom: 16px; }
+  .collect-stream-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #1a1a18; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 0.5px solid #e8e6df; }
+  .collect-bullets { font-size: 14px; color: #2c2c2a; line-height: 1.8; white-space: pre-wrap; }
+  .collect-empty { font-size: 13px; color: #b4b2a9; font-style: italic; }
+  .collect-meta { font-family: 'Geist Mono', monospace; font-size: 10px; color: #888780; margin-top: 8px; }
+  .summary-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 24px; }
+  .summary-card { background: #f9f8f4; border-radius: 4px; padding: 14px; border: 0.5px solid #e8e6df; text-align: center; }
+  .summary-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #888780; margin-bottom: 6px; }
+  .summary-val { font-size: 20px; font-weight: 500; color: #1a1a18; }
+  .summary-sub { font-size: 11px; color: #888780; margin-top: 2px; }
+  .copy-area { font-family: 'Geist Mono', monospace; font-size: 12px; background: #f9f8f4; border: 0.5px solid #e8e6df; border-radius: 4px; padding: 16px; width: 100%; height: 200px; resize: vertical; margin-top: 12px; line-height: 1.6; color: #444441; }
+  .footer { margin-top: 48px; font-family: 'Geist Mono', monospace; font-size: 10px; color: #b4b2a9; letter-spacing: 0.08em; text-align: center; }
+  .last-updated { font-family: 'Geist Mono', monospace; font-size: 11px; color: #888780; background: #f5f4f0; padding: 6px 10px; border-radius: 4px; display: inline-block; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-title">Workstream Updates</div>
+  <div class="page-sub">Project Alchemist / IDEO &nbsp;·&nbsp; Fill in your stream, hit Save</div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('omni', this)">Omnichannel <span class="badge" id="b-omni">—</span></button>
+    <button class="tab" onclick="switchTab('digital', this)">Digital <span class="badge" id="b-digital">—</span></button>
+    <button class="tab" onclick="switchTab('ai', this)">AI Companion <span class="badge" id="b-ai">—</span></button>
+    <button class="tab" onclick="switchTab('collect', this)">Collect <span class="badge" id="b-collect">Rita</span></button>
+  </div>
+
+  <!-- OMNICHANNEL -->
+  <div class="panel active" id="p-omni">
+    <div class="stream-title">Omnichannel Work Stream</div>
+    <div class="stream-desc">Add your updates for this week. One bullet point per line — no dashes or asterisks needed.</div>
+    <div class="field">
+      <label>Your name</label>
+      <input type="text" id="omni-name" placeholder="e.g. Alex"/>
+    </div>
+    <div class="field">
+      <label>Bullet points</label>
+      <textarea id="omni-bullets" rows="8" placeholder="We mapped the key touchpoints across the journey...&#10;We developed the onboarding flow...&#10;We ran user testing on the checkout experience..."></textarea>
+      <p class="hint">One update per line. Please be as concise and polished as possible. Let Rita know directly if you would like to incorporate photos in your update.</p>
+    </div>
+    <button class="btn" onclick="saveStream('omni')">Save my updates</button>
+    <div class="msg" id="msg-omni"></div>
+  </div>
+
+  <!-- DIGITAL -->
+  <div class="panel" id="p-digital">
+    <div class="stream-title">Digital Work Stream</div>
+    <div class="stream-desc">Add your updates for this week. One bullet point per line — no dashes or asterisks needed.</div>
+    <div class="field">
+      <label>Your name</label>
+      <input type="text" id="digital-name" placeholder="e.g. Sam"/>
+    </div>
+    <div class="field">
+      <label>Bullet points</label>
+      <textarea id="digital-bullets" rows="8" placeholder="We ran a round of user testing on the app prototype...&#10;We iterated on the information architecture...&#10;We refined the visual design system..."></textarea>
+      <p class="hint">One update per line. Please be as concise and polished as possible. Let Rita know directly if you would like to incorporate photos in your update.</p>
+    </div>
+    <button class="btn" onclick="saveStream('digital')">Save my updates</button>
+    <div class="msg" id="msg-digital"></div>
+  </div>
+
+  <!-- AI -->
+  <div class="panel" id="p-ai">
+    <div class="stream-title">AI Work Stream</div>
+    <div class="stream-desc">Add your updates for this week. One bullet point per line — no dashes or asterisks needed.</div>
+    <div class="field">
+      <label>Your name</label>
+      <input type="text" id="ai-name" placeholder="e.g. Jordan"/>
+    </div>
+    <div class="field">
+      <label>Bullet points</label>
+      <textarea id="ai-bullets" rows="8" placeholder="We explored conversational UI patterns...&#10;We tested the tone of the AI companion with users...&#10;We designed the onboarding conversation flow..."></textarea>
+      <p class="hint">One update per line. Please be as concise and polished as possible. Let Rita know directly if you would like to incorporate photos in your update.</p>
+    </div>
+    <button class="btn" onclick="saveStream('ai')">Save my updates</button>
+    <div class="msg" id="msg-ai"></div>
+  </div>
+
+  <!-- COLLECT (RITA) -->
+  <div class="panel" id="p-collect">
+    <p style="font-size:13px; color:#888780; margin-bottom:20px;">All saved updates from your team. Copy the summary below and paste it into your Claude chat to build the newsletter.</p>
+
+    <div class="summary-grid" id="summary-grid"></div>
+
+    <div class="collect-box">
+      <div class="collect-stream-label">Omnichannel Work Stream</div>
+      <div id="c-omni-bullets" class="collect-bullets"></div>
+      <div id="c-omni-meta" class="collect-meta"></div>
+    </div>
+
+    <div class="collect-box">
+      <div class="collect-stream-label">Digital Work Stream</div>
+      <div id="c-digital-bullets" class="collect-bullets"></div>
+      <div id="c-digital-meta" class="collect-meta"></div>
+    </div>
+
+    <div class="collect-box">
+      <div class="collect-stream-label">AI Work Stream</div>
+      <div id="c-ai-bullets" class="collect-bullets"></div>
+      <div id="c-ai-meta" class="collect-meta"></div>
+    </div>
+
+    <hr class="divider"/>
+
+    <p style="font-size:13px; color:#888780; margin-bottom:10px;">Copy this summary and paste it into Claude to build the newsletter:</p>
+    <textarea class="copy-area" id="copyArea" readonly></textarea>
+    <div style="display:flex; align-items:center; gap:12px; margin-top:12px;">
+      <button class="btn" onclick="copyAll()">Copy summary</button>
+      <button class="btn-outline" onclick="refreshCollect()">Refresh</button>
+      <button class="btn-danger" onclick="clearAll()">Clear all data</button>
+      <span id="copiedMsg" style="font-size:12px; color:#2d6a4f; display:none;">Copied!</span>
+    </div>
+  </div>
+
+  <div class="footer">Project Alchemist &nbsp;·&nbsp; IDEO &nbsp;·&nbsp; Internal use only</div>
+
+</div>
+
+<script>
+const STREAMS = ['omni','digital','ai'];
+const LABELS = { omni: 'Omnichannel Work Stream', digital: 'Digital Work Stream', ai: 'AI Work Stream' };
+
+function switchTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); });
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('p-'+name).classList.add('active');
+  if (name === 'collect') refreshCollect();
+}
+
+function getBadgeCount(s) {
+  const d = loadData(s);
+  if (!d || !d.bullets) return 0;
+  return d.bullets.split('\n').filter(l => l.trim()).length;
+}
+
+function setBadges() {
+  STREAMS.forEach(s => {
+    const n = getBadgeCount(s);
+    const b = document.getElementById('b-'+s);
+    b.textContent = n > 0 ? n+' bullet'+(n!==1?'s':'') : '—';
+    b.className = n > 0 ? 'badge ok' : 'badge';
+  });
+}
+
+function saveData(key, obj) {
+  localStorage.setItem('pa-ws-'+key, JSON.stringify(obj));
+}
+
+function loadData(key) {
+  try { return JSON.parse(localStorage.getItem('pa-ws-'+key)); } catch(e) { return null; }
+}
+
+function saveStream(s) {
+  const name = document.getElementById(s+'-name').value.trim();
+  const bullets = document.getElementById(s+'-bullets').value.trim();
+  if (!bullets) { showMsg(s, 'Please add at least one bullet point.', false); return; }
+  const obj = { name, bullets, savedAt: new Date().toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }) };
+  saveData(s, obj);
+  setBadges();
+  showMsg(s, 'Saved! Rita can now see your updates in the Collect tab.', true);
+}
+
+function showMsg(s, text, ok) {
+  const el = document.getElementById('msg-'+s);
+  el.textContent = text;
+  el.className = 'msg '+(ok?'ok':'err');
+  setTimeout(() => el.className = 'msg', 4000);
+}
+
+function refreshCollect() {
+  let summary = '';
+  let totalBullets = 0;
+  let streamsReady = 0;
+
+  STREAMS.forEach(s => {
+    const d = loadData(s);
+    const bulletsEl = document.getElementById('c-'+s+'-bullets');
+    const metaEl = document.getElementById('c-'+s+'-meta');
+    if (d && d.bullets) {
+      const lines = d.bullets.split('\n').filter(l => l.trim());
+      bulletsEl.innerHTML = lines.map(l => `• ${l.trim()}`).join('\n');
+      bulletsEl.className = 'collect-bullets';
+      metaEl.textContent = 'Saved by '+(d.name||'unknown')+' · '+d.savedAt;
+      totalBullets += lines.length;
+      streamsReady++;
+      summary += `\n${LABELS[s]}:\n`+lines.map(l=>`- ${l.trim()}`).join('\n')+'\n';
+    } else {
+      bulletsEl.textContent = 'No updates saved yet.';
+      bulletsEl.className = 'collect-bullets collect-empty';
+      metaEl.textContent = '';
+      summary += `\n${LABELS[s]}:\n- (no updates yet)\n`;
+    }
+  });
+
+  document.getElementById('summary-grid').innerHTML = STREAMS.map(s => {
+    const n = getBadgeCount(s);
+    const d = loadData(s);
+    return `<div class="summary-card"><div class="summary-label">${LABELS[s]}</div><div class="summary-val">${n}</div><div class="summary-sub">${n > 0 ? 'bullet'+(n!==1?'s':'')+' · '+(d&&d.name?d.name:'?') : 'no updates yet'}</div></div>`;
+  }).join('');
+
+  document.getElementById('copyArea').value = `Here are this week's workstream updates for the newsletter:\n${summary}\nPlease build the newsletter with these bullet points under their respective workstream sections.`;
+}
+
+function copyAll() {
+  const ta = document.getElementById('copyArea');
+  ta.select();
+  document.execCommand('copy');
+  const m = document.getElementById('copiedMsg');
+  m.style.display = 'inline';
+  setTimeout(() => m.style.display = 'none', 2500);
+}
+
+function clearAll() {
+  if (!confirm('Clear all saved data? This cannot be undone.')) return;
+  STREAMS.forEach(s => localStorage.removeItem('pa-ws-'+s));
+  setBadges();
+  refreshCollect();
+}
+
+// Load existing data into forms on page load
+window.addEventListener('load', () => {
+  STREAMS.forEach(s => {
+    const d = loadData(s);
+    if (d) {
+      if (d.name) document.getElementById(s+'-name').value = d.name;
+      if (d.bullets) document.getElementById(s+'-bullets').value = d.bullets;
+    }
+  });
+  setBadges();
+});
+</script>
+
+</body>
+</html>
