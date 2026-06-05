@@ -157,15 +157,19 @@
 </div>
 
 <script>
-// ── Replace this URL with your Render API URL once deployed ──────────────────
-const API_URL = 'https://YOUR-APP-NAME.onrender.com';
+// ── Paste your two Supabase values here after setup ──────────────────────────
+const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+const SUPABASE_KEY = 'your-anon-public-key';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const STREAMS = ['omni','digital','ai'];
 const LABELS = { omni: 'Omnichannel Work Stream', digital: 'Digital Work Stream', ai: 'AI Work Stream' };
 
-// In-memory cache so badges stay accurate after a load
 let cache = {};
+
+function sbHeaders() {
+  return { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY };
+}
 
 function switchTab(name, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -192,15 +196,15 @@ function setBadges() {
 
 async function fetchAll() {
   try {
-    const res = await fetch(API_URL + '/updates');
-    if (!res.ok) throw new Error('Network response was not ok');
+    const res = await fetch(SUPABASE_URL + '/rest/v1/updates?select=*', { headers: sbHeaders() });
+    if (!res.ok) throw new Error('Fetch failed');
     const rows = await res.json();
     cache = {};
     rows.forEach(r => {
       cache[r.stream] = { name: r.name, bullets: r.bullets, savedAt: r.saved_at };
     });
   } catch (err) {
-    console.error('Could not load updates from API:', err);
+    console.error('Could not load updates:', err);
   }
 }
 
@@ -213,17 +217,17 @@ async function saveStream(s) {
   showMsg(s, 'Saving…', true);
 
   try {
-    const res = await fetch(API_URL + '/updates', {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/updates', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ stream: s, name, bullets, savedAt })
+      headers: { ...sbHeaders(), 'Prefer': 'resolution=merge-duplicates' },
+      body: JSON.stringify({ stream: s, name, bullets, saved_at: savedAt })
     });
-    if (!res.ok) throw new Error('Server error');
+    if (!res.ok) throw new Error('Save failed');
     cache[s] = { name, bullets, savedAt };
     setBadges();
     showMsg(s, 'Saved! Your updates are now visible to everyone in the Collect tab.', true);
   } catch (err) {
-    showMsg(s, 'Could not reach the API. Check your connection or API URL.', false);
+    showMsg(s, 'Could not save. Check your connection or Supabase settings.', false);
   }
 }
 
@@ -277,7 +281,10 @@ function copyAll() {
 async function clearAll() {
   if (!confirm('Clear all saved data for everyone? This cannot be undone.')) return;
   try {
-    await fetch(API_URL + '/updates', { method: 'DELETE' });
+    await fetch(SUPABASE_URL + '/rest/v1/updates?stream=neq.null', {
+      method: 'DELETE',
+      headers: sbHeaders()
+    });
     cache = {};
     setBadges();
     refreshCollect();
@@ -286,7 +293,6 @@ async function clearAll() {
   }
 }
 
-// Load existing data into forms on page load
 window.addEventListener('load', async () => {
   await fetchAll();
   STREAMS.forEach(s => {
