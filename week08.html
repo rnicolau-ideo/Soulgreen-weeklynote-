@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&display=swap');
+  @font-face { font-family: 'Untimes'; src: url('Untimes-BoldItalic.woff2') format('woff2'), url('Untimes-BoldItalic.woff') format('woff'); font-weight: bold; font-style: italic; font-display: swap; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f4f0; font-family: 'Geist', sans-serif; color: #1a1a18; }
+  .email-wrap { max-width: 620px; margin: 0 auto; background: #ffffff; }
+  .header-art { width: 100%; position: relative; overflow: hidden; height: 280px; }
+  .header-img { width: 100%; height: 280px; object-fit: cover; object-position: center; display: block; }
+  .header-meta { position: absolute; top: 0; left: 0; right: 0; padding: 22px 36px; display: flex; align-items: baseline; justify-content: space-between; z-index: 2; }
+  .logo { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 22px; color: #ffffff; }
+  .issue-tag { font-family: 'Geist Mono', monospace; font-size: 10px; color: #ffffff; letter-spacing: 0.06em; }
+  .welcome { padding: 48px 48px 36px; border-bottom: 1px solid #e8e6df; }
+  .section-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 18px; }
+  .welcome-headline { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 36px; line-height: 1.1; letter-spacing: -0.5px; color: #1a1a18; margin-bottom: 18px; }
+  .welcome-body { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.75; color: #444441; max-width: 460px; margin-bottom: 14px; }
+  .work { padding: 44px 48px 36px; }
+  .work-title { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888780; margin-bottom: 28px; }
+  .stream-section { margin-bottom: 36px; }
+  .stream-section:last-child { margin-bottom: 0; }
+  .stream-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #1a1a18; margin-bottom: 0; padding-bottom: 8px; border-bottom: 0.5px solid #e8e6df; }
+  .work-list { list-style: none; }
+  .work-list li { font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.8; color: #2c2c2a; padding: 10px 0; border-bottom: 0.5px solid #e8e6df; display: flex; align-items: flex-start; gap: 12px; }
+  .work-list li:last-child { border-bottom: none; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: #1a1a18; flex-shrink: 0; margin-top: 10px; }
+  .next-steps { margin-top: 12px; background: #f9f8f4; border-radius: 4px; padding: 14px 16px; }
+  .next-steps-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #888780; margin-bottom: 10px; }
+  .next-steps ul { list-style: none; }
+  .next-steps ul li { font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 400; line-height: 1.7; color: #444441; padding: 5px 0; display: flex; align-items: flex-start; gap: 10px; }
+  .next-dot { width: 3px; height: 3px; border-radius: 50%; background: #888780; flex-shrink: 0; margin-top: 9px; }
+  .goodbye { padding: 52px 48px 44px; background: #1a1a18; }
+  .goodbye-text { font-family: 'Untimes', Georgia, serif; font-style: italic; font-weight: 700; font-size: 30px; line-height: 1.15; color: #f5f4f0; margin-bottom: 24px; letter-spacing: -0.3px; }
+  .goodbye-sign { font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 400; color: #888780; line-height: 1.6; }
+  .footer-peek { width: 100%; height: 80px; overflow: hidden; }
+  .footer-peek img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+</style>
+</head>
+<body>
+<div class="email-wrap">
+
+  <!-- HEADER -->
+  <div class="header-art">
+    <img class="header-img" src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/week_8_photo.jpg" alt="texture"/>
+    <div class="header-meta">
+      <div class="logo">Project Alchemist</div>
+      <div class="issue-tag">JUNE 2026</div>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <div class="welcome">
+    <div class="section-label">Week 08</div>
+    <div class="welcome-headline">From vision to detail.</div>
+    <p class="welcome-body">Week eight is where the work gets granular. With the vision set and the workstreams now running in parallel, we are moving from big-picture thinking into the specifics — mapping what the experience actually needs to be, and how each part of it comes to life.</p>
+    <p class="welcome-body">Here is what each team got up to this week, and what is coming next.</p>
+  </div>
+
+  <!-- WORK -->
+  <div class="work">
+    <div class="work-title">What we did</div>
+
+    <!-- OMNICHANNEL -->
+    <div class="stream-section">
+      <div class="stream-label">Omnichannel Work Stream</div>
+      <ul class="work-list">
+        <li><span class="dot"></span><span>We analysed each Signature Moment in depth, surfacing open questions across feasibility, partnerships, membership structure, entry points, product integrations, and functional capabilities — laying the foundation for the journey map and experience blueprint.</span></li>
+        <li><span class="dot"></span><span>We are preparing a working session with your team for next week to map existing gaps together and align on the key decisions that will shape the next stage of work.</span></li>
+      </ul>
+      <div class="next-steps">
+        <div class="next-steps-label">Next steps</div>
+        <ul>
+          <li><span class="next-dot"></span><span>Continue developing an early draft of the customer journey and membership framework.</span></li>
+          <li><span class="next-dot"></span><span>Align with the Digital and AI workstreams on the implications and needs we are beginning to map.</span></li>
+          <li><span class="next-dot"></span><span>Looking forward to the working session with your team on Thursday.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DIGITAL -->
+    <div class="stream-section">
+      <div class="stream-label">Digital Work Stream</div>
+      <ul class="work-list">
+        <li><span class="dot"></span><span>We began building the digital experience foundation, exploring key visual elements and designing a set of reusable UI components that will underpin the product as it develops.</span></li>
+      </ul>
+      <div class="next-steps">
+        <div class="next-steps-label">Next steps</div>
+        <ul>
+          <li><span class="next-dot"></span><span>Plan the next round of user testing.</span></li>
+          <li><span class="next-dot"></span><span>Design and prepare the prototype for testing.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- AI -->
+    <div class="stream-section">
+      <div class="stream-label">AI Work Stream</div>
+      <ul class="work-list">
+        <li><span class="dot"></span><span>We onboarded the new team members joining this workstream, getting everyone aligned on context, direction, and ways of working.</span></li>
+        <li><span class="dot"></span><span>We explored a range of potential formats for the deliverables, considering how best to present the AI companion work as it evolves.</span></li>
+        <li><span class="dot"></span><span>We identified a set of experts whose perspectives will help inform and sharpen the work ahead.</span></li>
+      </ul>
+      <div class="next-steps">
+        <div class="next-steps-label">Next steps</div>
+        <ul>
+          <li><span class="next-dot"></span><span>Draft a range of archetypes and begin exploring how tone of voice shifts across each one.</span></li>
+          <li><span class="next-dot"></span><span>Start mapping what the AI companion might do — and avoid — across different mediums.</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GOODBYE -->
+  <div class="goodbye">
+    <div class="goodbye-text">See you next week!</div>
+    <div class="goodbye-sign">IDEO team</div>
+  </div>
+
+  <!-- FOOTER PEEK -->
+  <div class="footer-peek">
+    <img src="https://raw.githubusercontent.com/rnicolau-ideo/Soulgreen-weeklynote-/main/week_8_photo.jpg" alt=""/>
+  </div>
+
+</div>
+</body>
+</html>
