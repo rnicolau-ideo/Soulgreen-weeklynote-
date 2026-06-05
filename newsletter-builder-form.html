@@ -78,6 +78,11 @@
       <textarea id="omni-bullets" rows="8" placeholder="We mapped the key touchpoints across the journey...&#10;We developed the onboarding flow...&#10;We ran user testing on the checkout experience..."></textarea>
       <p class="hint">One update per line. Please be as concise and polished as possible.</p>
     </div>
+    <div class="field">
+      <label>Next steps</label>
+      <textarea id="omni-next" rows="4" placeholder="What is planned for next week...&#10;One item per line."></textarea>
+      <p class="hint">One item per line.</p>
+    </div>
     <button class="btn" onclick="saveStream('omni')">Save my updates</button>
     <div class="msg" id="msg-omni"></div>
   </div>
@@ -95,6 +100,11 @@
       <textarea id="digital-bullets" rows="8" placeholder="We ran a round of user testing on the app prototype...&#10;We iterated on the information architecture...&#10;We refined the visual design system..."></textarea>
       <p class="hint">One update per line. Please be as concise and polished as possible.</p>
     </div>
+    <div class="field">
+      <label>Next steps</label>
+      <textarea id="digital-next" rows="4" placeholder="What is planned for next week...&#10;One item per line."></textarea>
+      <p class="hint">One item per line.</p>
+    </div>
     <button class="btn" onclick="saveStream('digital')">Save my updates</button>
     <div class="msg" id="msg-digital"></div>
   </div>
@@ -111,6 +121,11 @@
       <label>Bullet points</label>
       <textarea id="ai-bullets" rows="8" placeholder="We explored conversational UI patterns...&#10;We tested the tone of the AI companion with users...&#10;We designed the onboarding conversation flow..."></textarea>
       <p class="hint">One update per line. Please be as concise and polished as possible.</p>
+    </div>
+    <div class="field">
+      <label>Next steps</label>
+      <textarea id="ai-next" rows="4" placeholder="What is planned for next week...&#10;One item per line."></textarea>
+      <p class="hint">One item per line.</p>
     </div>
     <button class="btn" onclick="saveStream('ai')">Save my updates</button>
     <div class="msg" id="msg-ai"></div>
@@ -159,6 +174,7 @@
 <script>
 const STREAMS = ['omni','digital','ai'];
 const LABELS = { omni: 'Omnichannel Work Stream', digital: 'Digital Work Stream', ai: 'AI Work Stream' };
+const API = 'https://newsletter-server-production-43ed.up.railway.app';
 
 function switchTab(name, el) {
   document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); });
@@ -191,14 +207,24 @@ function loadData(key) {
   try { return JSON.parse(localStorage.getItem('pa-ws-'+key)); } catch(e) { return null; }
 }
 
-function saveStream(s) {
+async function saveStream(s) {
   const name = document.getElementById(s+'-name').value.trim();
   const bullets = document.getElementById(s+'-bullets').value.trim();
+  const next = document.getElementById(s+'-next').value.trim();
   if (!bullets) { showMsg(s, 'Please add at least one bullet point.', false); return; }
-  const obj = { name, bullets, savedAt: new Date().toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }) };
-  saveData(s, obj);
-  setBadges();
-  showMsg(s, 'Saved! Rita can now see your updates in the Collect tab.', true);
+  showMsg(s, 'Saving...', true);
+  try {
+    const res = await fetch(API+'/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stream: s, name, bullets, next })
+    });
+    if (!res.ok) throw new Error('Server error');
+    setBadges();
+    showMsg(s, 'Saved! Rita can now see your updates in the Collect tab.', true);
+  } catch(e) {
+    showMsg(s, 'Could not save. Please check your connection and try again.', false);
+  }
 }
 
 function showMsg(s, text, ok) {
@@ -208,23 +234,35 @@ function showMsg(s, text, ok) {
   setTimeout(() => el.className = 'msg', 4000);
 }
 
-function refreshCollect() {
+async function refreshCollect() {
   let summary = '';
   let totalBullets = 0;
   let streamsReady = 0;
+  let apiData = {};
+
+  try {
+    const res = await fetch(API+'/data');
+    apiData = await res.json();
+  } catch(e) {
+    apiData = {};
+  }
 
   STREAMS.forEach(s => {
-    const d = loadData(s);
+    const d = apiData[s];
     const bulletsEl = document.getElementById('c-'+s+'-bullets');
     const metaEl = document.getElementById('c-'+s+'-meta');
     if (d && d.bullets) {
       const lines = d.bullets.split('\n').filter(l => l.trim());
+      const nextLines = d.next ? d.next.split('\n').filter(l => l.trim()) : [];
       bulletsEl.innerHTML = lines.map(l => `• ${l.trim()}`).join('\n');
+      if (nextLines.length) bulletsEl.innerHTML += '\n\nNext steps:\n' + nextLines.map(l => `→ ${l.trim()}`).join('\n');
       bulletsEl.className = 'collect-bullets';
       metaEl.textContent = 'Saved by '+(d.name||'unknown')+' · '+d.savedAt;
       totalBullets += lines.length;
       streamsReady++;
-      summary += `\n${LABELS[s]}:\n`+lines.map(l=>`- ${l.trim()}`).join('\n')+'\n';
+      summary += `\n${LABELS[s]}:\nWhat we did:\n`+lines.map(l=>`- ${l.trim()}`).join('\n');
+      if (nextLines.length) summary += `\nNext steps:\n`+nextLines.map(l=>`- ${l.trim()}`).join('\n');
+      summary += '\n';
     } else {
       bulletsEl.textContent = 'No updates saved yet.';
       bulletsEl.className = 'collect-bullets collect-empty';
@@ -239,7 +277,7 @@ function refreshCollect() {
     return `<div class="summary-card"><div class="summary-label">${LABELS[s]}</div><div class="summary-val">${n}</div><div class="summary-sub">${n > 0 ? 'bullet'+(n!==1?'s':'')+' · '+(d&&d.name?d.name:'?') : 'no updates yet'}</div></div>`;
   }).join('');
 
-  document.getElementById('copyArea').value = `Here are this week's workstream updates for the newsletter:\n${summary}\nPlease build the newsletter with these bullet points under their respective workstream sections.`;
+  document.getElementById('copyArea').value = `Please build Week 08 of the Project Alchemist newsletter using the workstream updates below.\n\nBased on the content, please:\n1. Suggest a compelling headline\n2. Write a short welcome text (2 short paragraphs)\n3. Place the bullet points under their respective workstream sections\n4. Keep the usual sign-off: See you next week!\n\nWorkstream updates:\n${summary}\nUse the same design and layout as previous weeks.`;
 }
 
 function copyAll() {
@@ -251,11 +289,15 @@ function copyAll() {
   setTimeout(() => m.style.display = 'none', 2500);
 }
 
-function clearAll() {
+async function clearAll() {
   if (!confirm('Clear all saved data? This cannot be undone.')) return;
-  STREAMS.forEach(s => localStorage.removeItem('pa-ws-'+s));
-  setBadges();
-  refreshCollect();
+  try {
+    await fetch(API+'/clear', { method: 'POST' });
+    setBadges();
+    refreshCollect();
+  } catch(e) {
+    alert('Could not clear data. Please try again.');
+  }
 }
 
 // Load existing data into forms on page load
