@@ -83,7 +83,10 @@
       <textarea id="omni-next" rows="4" placeholder="What is planned for next week...&#10;One item per line."></textarea>
       <p class="hint">One item per line.</p>
     </div>
-    <button class="btn" onclick="saveStream('omni')">Save my updates</button>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <button class="btn" onclick="saveStream('omni')">Save my updates</button>
+      <button class="btn-danger" onclick="resetStream('omni')">Reset</button>
+    </div>
     <div class="msg" id="msg-omni"></div>
   </div>
 
@@ -105,7 +108,10 @@
       <textarea id="digital-next" rows="4" placeholder="What is planned for next week...&#10;One item per line."></textarea>
       <p class="hint">One item per line.</p>
     </div>
-    <button class="btn" onclick="saveStream('digital')">Save my updates</button>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <button class="btn" onclick="saveStream('digital')">Save my updates</button>
+      <button class="btn-danger" onclick="resetStream('digital')">Reset</button>
+    </div>
     <div class="msg" id="msg-digital"></div>
   </div>
 
@@ -127,7 +133,10 @@
       <textarea id="ai-next" rows="4" placeholder="What is planned for next week...&#10;One item per line."></textarea>
       <p class="hint">One item per line.</p>
     </div>
-    <button class="btn" onclick="saveStream('ai')">Save my updates</button>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <button class="btn" onclick="saveStream('ai')">Save my updates</button>
+      <button class="btn-danger" onclick="resetStream('ai')">Reset</button>
+    </div>
     <div class="msg" id="msg-ai"></div>
   </div>
 
@@ -297,6 +306,24 @@ async function clearAll() {
     refreshCollect();
   } catch(e) {
     alert('Could not clear data. Please try again.');
+  }
+}
+
+async function resetStream(s) {
+  if (!confirm('Reset this stream? This will clear all saved data for this workstream.')) return;
+  try {
+    await fetch(API+'/reset', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stream: s })
+    });
+    document.getElementById(s+'-name').value = '';
+    document.getElementById(s+'-bullets').value = '';
+    document.getElementById(s+'-next').value = '';
+    setBadges();
+    showMsg(s, 'Reset successfully.', true);
+  } catch(e) {
+    showMsg(s, 'Could not reset. Please try again.', false);
   }
 }
 
