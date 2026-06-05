@@ -157,11 +157,18 @@
 </div>
 
 <script>
+// ── Replace this URL with your Render API URL once deployed ──────────────────
+const API_URL = 'https://YOUR-APP-NAME.onrender.com';
+// ─────────────────────────────────────────────────────────────────────────────
+
 const STREAMS = ['omni','digital','ai'];
 const LABELS = { omni: 'Omnichannel Work Stream', digital: 'Digital Work Stream', ai: 'AI Work Stream' };
 
+// In-memory cache so badges stay accurate after a load
+let cache = {};
+
 function switchTab(name, el) {
-  document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('p-'+name).classList.add('active');
@@ -169,7 +176,7 @@ function switchTab(name, el) {
 }
 
 function getBadgeCount(s) {
-  const d = loadData(s);
+  const d = cache[s];
   if (!d || !d.bullets) return 0;
   return d.bullets.split('\n').filter(l => l.trim()).length;
 }
@@ -183,38 +190,56 @@ function setBadges() {
   });
 }
 
-function saveData(key, obj) {
-  localStorage.setItem('pa-ws-'+key, JSON.stringify(obj));
+async function fetchAll() {
+  try {
+    const res = await fetch(API_URL + '/updates');
+    if (!res.ok) throw new Error('Network response was not ok');
+    const rows = await res.json();
+    cache = {};
+    rows.forEach(r => {
+      cache[r.stream] = { name: r.name, bullets: r.bullets, savedAt: r.saved_at };
+    });
+  } catch (err) {
+    console.error('Could not load updates from API:', err);
+  }
 }
 
-function loadData(key) {
-  try { return JSON.parse(localStorage.getItem('pa-ws-'+key)); } catch(e) { return null; }
-}
-
-function saveStream(s) {
+async function saveStream(s) {
   const name = document.getElementById(s+'-name').value.trim();
   const bullets = document.getElementById(s+'-bullets').value.trim();
   if (!bullets) { showMsg(s, 'Please add at least one bullet point.', false); return; }
-  const obj = { name, bullets, savedAt: new Date().toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }) };
-  saveData(s, obj);
-  setBadges();
-  showMsg(s, 'Saved! Rita can now see your updates in the Collect tab.', true);
+
+  const savedAt = new Date().toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+  showMsg(s, 'Saving…', true);
+
+  try {
+    const res = await fetch(API_URL + '/updates', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stream: s, name, bullets, savedAt })
+    });
+    if (!res.ok) throw new Error('Server error');
+    cache[s] = { name, bullets, savedAt };
+    setBadges();
+    showMsg(s, 'Saved! Your updates are now visible to everyone in the Collect tab.', true);
+  } catch (err) {
+    showMsg(s, 'Could not reach the API. Check your connection or API URL.', false);
+  }
 }
 
 function showMsg(s, text, ok) {
   const el = document.getElementById('msg-'+s);
   el.textContent = text;
   el.className = 'msg '+(ok?'ok':'err');
-  setTimeout(() => el.className = 'msg', 4000);
+  if (text !== 'Saving…') setTimeout(() => el.className = 'msg', 4000);
 }
 
-function refreshCollect() {
+async function refreshCollect() {
+  await fetchAll();
   let summary = '';
-  let totalBullets = 0;
-  let streamsReady = 0;
 
   STREAMS.forEach(s => {
-    const d = loadData(s);
+    const d = cache[s];
     const bulletsEl = document.getElementById('c-'+s+'-bullets');
     const metaEl = document.getElementById('c-'+s+'-meta');
     if (d && d.bullets) {
@@ -222,8 +247,6 @@ function refreshCollect() {
       bulletsEl.innerHTML = lines.map(l => `• ${l.trim()}`).join('\n');
       bulletsEl.className = 'collect-bullets';
       metaEl.textContent = 'Saved by '+(d.name||'unknown')+' · '+d.savedAt;
-      totalBullets += lines.length;
-      streamsReady++;
       summary += `\n${LABELS[s]}:\n`+lines.map(l=>`- ${l.trim()}`).join('\n')+'\n';
     } else {
       bulletsEl.textContent = 'No updates saved yet.';
@@ -235,7 +258,7 @@ function refreshCollect() {
 
   document.getElementById('summary-grid').innerHTML = STREAMS.map(s => {
     const n = getBadgeCount(s);
-    const d = loadData(s);
+    const d = cache[s];
     return `<div class="summary-card"><div class="summary-label">${LABELS[s]}</div><div class="summary-val">${n}</div><div class="summary-sub">${n > 0 ? 'bullet'+(n!==1?'s':'')+' · '+(d&&d.name?d.name:'?') : 'no updates yet'}</div></div>`;
   }).join('');
 
@@ -251,17 +274,23 @@ function copyAll() {
   setTimeout(() => m.style.display = 'none', 2500);
 }
 
-function clearAll() {
-  if (!confirm('Clear all saved data? This cannot be undone.')) return;
-  STREAMS.forEach(s => localStorage.removeItem('pa-ws-'+s));
-  setBadges();
-  refreshCollect();
+async function clearAll() {
+  if (!confirm('Clear all saved data for everyone? This cannot be undone.')) return;
+  try {
+    await fetch(API_URL + '/updates', { method: 'DELETE' });
+    cache = {};
+    setBadges();
+    refreshCollect();
+  } catch (err) {
+    alert('Could not clear data. Check your connection.');
+  }
 }
 
 // Load existing data into forms on page load
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
+  await fetchAll();
   STREAMS.forEach(s => {
-    const d = loadData(s);
+    const d = cache[s];
     if (d) {
       if (d.name) document.getElementById(s+'-name').value = d.name;
       if (d.bullets) document.getElementById(s+'-bullets').value = d.bullets;
