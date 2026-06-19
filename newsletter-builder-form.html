@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Alchemist — Workstream Updates Week 09</title>
+<title>Project Alchemist — Workstream Updates Week 10</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&display=swap');
   @font-face { font-family: 'Untimes'; src: url('Untimes-BoldItalic.woff2') format('woff2'), url('Untimes-BoldItalic.woff') format('woff'); font-weight: bold; font-style: italic; }
@@ -55,7 +55,7 @@
 <body>
 <div class="wrap">
 
-  <div class="page-title">Workstream Updates Week 09</div>
+  <div class="page-title">Workstream Updates Week 10</div>
   <div class="page-sub">Project Alchemist / IDEO &nbsp;·&nbsp; Fill in your stream, hit Save</div>
 
   <div class="tabs">
@@ -286,7 +286,7 @@ async function refreshCollect() {
     return `<div class="summary-card"><div class="summary-label">${LABELS[s]}</div><div class="summary-val">${n}</div><div class="summary-sub">${n > 0 ? 'bullet'+(n!==1?'s':'')+' · '+(d&&d.name?d.name:'?') : 'no updates yet'}</div></div>`;
   }).join('');
 
-  document.getElementById('copyArea').value = `Please build Week 09 of the Project Alchemist newsletter using the workstream updates below.\n\nBased on the content, please:\n1. Suggest a compelling headline\n2. Write a short welcome text (2 short paragraphs)\n3. Place the bullet points under their respective workstream sections\n4. Keep the usual sign-off: See you next week!\n\nWorkstream updates:\n${summary}\nUse the same design and layout as previous weeks.`;
+  document.getElementById('copyArea').value = `Please build Week 10 of the Project Alchemist newsletter using the workstream updates below.\n\nBased on the content, please:\n1. Suggest a compelling headline\n2. Write a short welcome text (2 short paragraphs)\n3. Place the bullet points under their respective workstream sections\n4. Keep the usual sign-off: See you next week!\n\nWorkstream updates:\n${summary}\nUse the same design and layout as previous weeks.`;
 }
 
 function copyAll() {
