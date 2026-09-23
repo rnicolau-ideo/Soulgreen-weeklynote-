@@ -8,7 +8,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&family=Manrope:wght@400;500;600&display=swap');
 
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:#f0f2f5;font-family:'Geist',sans-serif;color:#1a1a18;min-height:100vh;}
+  body{background:#DBE0E3;font-family:'Geist',sans-serif;color:#1a1a18;min-height:100vh;}
 
   /* ── Sidebar ── */
   .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:90;}
@@ -42,8 +42,8 @@
 
   /* ── Topbar ── */
   .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;}
-  .page-title{font-family:'FH Oscar','Manrope',Georgia,sans-serif;font-weight:600;font-size:22px;color:#1a1a18;letter-spacing:-.01em;}
-  .page-sub{font-family:'Geist Mono',monospace;font-size:11px;color:#888780;letter-spacing:.06em;margin-top:2px;}
+  .page-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:22px;color:#1a1a18;letter-spacing:-.02em;}
+  .page-sub{font-family:'Manrope',sans-serif;font-size:11px;font-weight:500;color:#888780;letter-spacing:.02em;margin-top:3px;}
   .settings-btn{display:flex;align-items:center;gap:7px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#888780;background:#fff;border:.5px solid #d3d1c7;border-radius:4px;padding:9px 14px;cursor:pointer;transition:all .15s;}
   .settings-btn:hover{background:#f0f2f5;color:#1a1a18;}
 
@@ -510,17 +510,17 @@ function generateHTML() {
   const manropeImport = fonts.body ? '' : `@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');`;
 
   // Header image block
+  const headerOverlay = `<div style="position:absolute;top:0;left:0;right:0;padding:22px 36px;display:flex;align-items:baseline;justify-content:space-between;z-index:2;">
+      <div style="font-family:${hStack};font-style:italic;font-weight:700;font-size:22px;color:#ffffff;text-shadow:0 1px 6px rgba(0,0,0,.4);">${esc(project)}</div>
+      <div style="font-family:${lStack};font-size:10px;color:rgba(255,255,255,.85);letter-spacing:.06em;text-transform:uppercase;text-shadow:0 1px 4px rgba(0,0,0,.3);">${esc(label)}</div>
+    </div>`;
   const headerBlock = headerImage
     ? `<div style="width:100%;position:relative;overflow:hidden;height:280px;">
     <img src="${headerImage.dataUrl}" alt="" style="width:100%;height:280px;object-fit:cover;object-position:center;display:block;"/>
-    <div style="position:absolute;top:0;left:0;right:0;padding:22px 36px;display:flex;align-items:baseline;justify-content:space-between;z-index:2;">
-      <div style="font-family:${hStack};font-style:italic;font-weight:700;font-size:22px;color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,.35);">${esc(project)}</div>
-      <div style="font-family:${lStack};font-size:10px;color:rgba(255,255,255,.85);letter-spacing:.06em;text-transform:uppercase;">${esc(label)}</div>
-    </div>
+    ${headerOverlay}
   </div>`
-    : `<div style="background:${cFooter};padding:22px 36px;display:flex;align-items:baseline;justify-content:space-between;">
-    <div style="font-family:${hStack};font-style:italic;font-weight:700;font-size:22px;color:${textFooter};">${esc(project)}</div>
-    <div style="font-family:${lStack};font-size:10px;color:${subFooter};letter-spacing:.06em;text-transform:uppercase;">${esc(label)}</div>
+    : `<div style="width:100%;position:relative;height:280px;background:${cFooter};">
+    ${headerOverlay}
   </div>`;
 
   return `<!DOCTYPE html>
